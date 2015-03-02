@@ -1,6 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/nagai_takahiro/hands/db/migrate'
 let g:netrw_dirhist_2='/home/nagai_takahiro/hands/app/controllers/dashboard/admin'
 let g:netrw_dirhist_3='/home/nagai_takahiro/hands/app/views/dashboard/products'
 let g:netrw_dirhist_4='/home/nagai_takahiro/dotfiles/.git'
+let g:netrw_dirhist_5='/home/nagai_takahiro/hands/config'
+let g:netrw_dirhist_6='/home/nagai_takahiro/dotfiles/.git'
