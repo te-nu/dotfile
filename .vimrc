@@ -19,6 +19,7 @@ NeoBundle 'rhysd/accelerated-jk'
 NeoBundle 'vim-perl/vim-perl'
 NeoBundle "slim-template/vim-slim"
 NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'scrooloose/nerdcommenter'
 
 " カラースキーマ一覧表示にUnite.vimを使う
 NeoBundle 'Shougo/unite.vim'
@@ -60,6 +61,11 @@ call neobundle#end()
 filetype plugin indent on
 
 NeoBundleCheck
+
+" nerdcommenter の設定
+let NERDSpaceDelims = 1
+nmap ,, <Plug>NERDCommenterToggle
+vmap ,, <Plug>NERDCommenterToggle
 
 " coffee script-------------------------------------------------------
 " vimにcoffeeファイルタイプを認識させる

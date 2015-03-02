@@ -9,6 +9,7 @@ mrkn256.vim
 mru
 mustang-vim
 neobundle.vim
+nerdcommenter
 opsplorer
 scss-syntax.vim
 syntastic
