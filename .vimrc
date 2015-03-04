@@ -20,6 +20,8 @@ NeoBundle 'vim-perl/vim-perl'
 NeoBundle "slim-template/vim-slim"
 NeoBundle 'Townk/vim-autoclose'
 NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'scrooloose/nerdtree'
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " カラースキーマ一覧表示にUnite.vimを使う
 NeoBundle 'Shougo/unite.vim'
@@ -49,13 +51,17 @@ NeoBundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
 
+" jkキーを加速
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 
+" perlの自動成形
 map ,pt <Esc>:%! perltidy -se<CR>
 map ,ptv <Esc>:'<,'>! perltidy -se<CR>
 
 call neobundle#end()
+
+let g:treeExplVertical=1
 
 " Required
 filetype plugin indent on

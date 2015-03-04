@@ -10,6 +10,7 @@ mru
 mustang-vim
 neobundle.vim
 nerdcommenter
+nerdtree
 opsplorer
 scss-syntax.vim
 syntastic
