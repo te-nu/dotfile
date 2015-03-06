@@ -1,5 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/nagai_takahiro/Snufkin/lib/Snufkin'
 let g:netrw_dirhist_2='/home/nagai_takahiro/Snufkin/root/tmpl/admin/evaluation_progress'
 let g:netrw_dirhist_3='/home/nagai_takahiro/Snufkin/root/static'
+let g:netrw_dirhist_4='/home/nagai_takahiro/hands/db/migrate'
+let g:netrw_dirhist_5='/home/nagai_takahiro/ws/testApp/db/migrate'
+let g:netrw_dirhist_6='/home/nagai_takahiro/hands/db/migrate'
+let g:netrw_dirhist_7='/home/nagai_takahiro/hands_ansible/stage_vars'
+let g:netrw_dirhist_8='/'
+let g:netrw_dirhist_9='/home/nagai_takahiro/hands'
