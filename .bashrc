@@ -4,6 +4,19 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+case "${OSTYPE}" in
+darwin*)
+  alias ls="ls -G"
+  alias ll="ls -lG"
+  alias la="ls -laG"
+  ;;
+linux*)
+  alias ls='ls --color'
+  alias ll='ls -l --color'
+  alias la='ls -la --color'
+  ;;
+esac
+
 function color_my_prompt {
     local __user_and_host="\[\033[01;33m\]\u@\h"
     local __cur_location="\[\033[01;36m\]\w"
@@ -30,7 +43,6 @@ alias tmc="vim ~/.tmux.conf";
 alias tmux="tmux -2";
 
 alias c.="cd .."
-alias ls='ls --color'
 LS_COLORS='di=01;36'
 export LS_COLORS
 

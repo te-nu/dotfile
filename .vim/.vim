@@ -1,1 +1,1 @@
-/home/nagai_takahiro/dotfiles/.vim
+/Users/nagai_takahiro/dotfiles/.vim
