@@ -15,11 +15,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'yegappan/mru'
 NeoBundle 'vim-scripts/opsplorer'
-NeoBundle 'rhysd/accelerated-jk'
-NeoBundle 'vim-perl/vim-perl'
 NeoBundle "slim-template/vim-slim"
 NeoBundle 'Townk/vim-autoclose'
-NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/nerdtree'
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
@@ -27,7 +24,7 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 NeoBundle 'tpope/vim-rails'
 
 " インデントに色を付けて見やすくする
-NeoBundle 'nathanaelkane/vim-indent-guides'
+"NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
 let g:indent_guides_enable_on_vim_startup = 1
@@ -64,15 +61,42 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
 
 " jkキーを加速
+NeoBundle 'rhysd/accelerated-jk'
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
 
-" perlの自動成形
-map ,pt <Esc>:%! perltidy -se<CR>
-map ,ptv <Esc>:'<,'>! perltidy -se<CR>
+" nerdcommenter の設定(カンマ二つでコメントのオンオフ)
+NeoBundle 'scrooloose/nerdcommenter'
+let NERDSpaceDelims = 1
+nmap ,, <Plug>NERDCommenterToggle
+vmap ,, <Plug>NERDCommenterToggle
+
+" タブをかっこよく
+function! s:SID_PREFIX()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+function! s:my_tabline()  "{{{
+  let s = ''
+  for i in range(1, tabpagenr('$'))
+    let bufnrs = tabpagebuflist(i)
+    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+    let no = i  " display 0-origin tabpagenr.
+    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+    let title = fnamemodify(bufname(bufnr), ':t')
+    let title = '[' . title . ']'
+    let s .= '%'.i.'T'
+    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+    let s .= no . ':' . title
+    let s .= mod
+    let s .= '%#TabLineFill# '
+  endfor
+  let s .= '%#TabLineFill#%T%=%#TabLine#'
+  return s
+endfunction "}}}
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+set showtabline=2 " 常にタブラインを表示
 
 call neobundle#end()
-
 let g:treeExplVertical=1
 
 " Required
@@ -80,16 +104,11 @@ filetype plugin indent on
 
 NeoBundleCheck
 
-" nerdcommenter の設定
-let NERDSpaceDelims = 1
-nmap ,, <Plug>NERDCommenterToggle
-vmap ,, <Plug>NERDCommenterToggle
-
 " coffee script-------------------------------------------------------
 " vimにcoffeeファイルタイプを認識させる
-au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
+au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 " インデント設定
-autocmd FileType coffee    setlocal sw=2 sts=2 ts=2 et
+autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
 " オートコンパイル
 "保存と同時にコンパイルする
 autocmd BufWritePost *.coffee silent make! 
@@ -105,19 +124,24 @@ set number
 set shiftwidth=2
 set smartindent
 set autoindent
+
 "タブでスペースを入れる
 set tabstop=2
 set softtabstop=2
+
+" ステータスバーを2行に
+set laststatus=2
+
+" タイトル表示
 set title
-set laststatus=1
 
 "カラースキーマの表示
 syntax enable
 set t_Co=256
 
-"縦棒と横棒を表示
-"set cursorline
-"set cursorcolumn
+" slimとhtmlは縦線を表示
+au BufNewFile,BufRead *.slim set cursorcolumn
+au BufNewFile,BufRead *.html set cursorcolumn
 
 "かっこの組を表示
 set showmatch
@@ -140,13 +164,14 @@ noremap <S-h> <C-w><
 noremap <S-k> <C-w>-
 noremap <S-j> <C-w>+
 
+" スペースを可視化
 augroup HighlightTrailingSpaces
   autocmd!
   autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
 
-"molokai
+" molokai
 colorscheme molokai
 let g:molokai_original=1
 let g:rehash256=1

@@ -21,8 +21,6 @@ vim-coffee-script
 vim-colors-solarized
 vim-colors-wombat
 vim-endwise
-vim-indent-guides
-vim-perl
 vim-pyte
 vim-rails
 vim-railscasts-theme
