@@ -71,7 +71,7 @@ let NERDSpaceDelims = 1
 nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
 
-" タブをかっこよく
+" タブをかっこよく --------------------------------------------------------------------
 function! s:SID_PREFIX()
   return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
 endfunction
@@ -95,6 +95,7 @@ function! s:my_tabline()  "{{{
 endfunction "}}}
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2 " 常にタブラインを表示
+" -------------------------------------------------------------------------------------
 
 call neobundle#end()
 let g:treeExplVertical=1
@@ -104,18 +105,19 @@ filetype plugin indent on
 
 NeoBundleCheck
 
-" coffee script-------------------------------------------------------
+" coffee script -----------------------------------------------------------------------
 " vimにcoffeeファイルタイプを認識させる
 au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 " インデント設定
 autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
 " オートコンパイル
 "保存と同時にコンパイルする
-autocmd BufWritePost *.coffee silent make! 
+autocmd BufWritePost *.coffee silent make!
 "エラーがあったら別ウィンドウで表示
-autocmd QuickFixCmdPost * nested cwindow | redraw! 
+autocmd QuickFixCmdPost * nested cwindow | redraw!
 " Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
 nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
+" -------------------------------------------------------------------------------------
 
 "行番号の表示
 set number
