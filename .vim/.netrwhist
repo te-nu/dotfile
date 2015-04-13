@@ -1,5 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/nagai_takahiro/.vim/bundle'
-let g:netrw_dirhist_2='/Users/nagai_takahiro/.vim/bundle/.neobundle'
-let g:netrw_dirhist_3='/home/nagai_takahiro/hands'
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/nagai_takahiro/hands/db/migrate'
+let g:netrw_dirhist_2='/home/nagai_takahiro/hands/app/assets/javascripts/dashboard/progress'
+let g:netrw_dirhist_3='/home/nagai_takahiro/hands/config/settings'
+let g:netrw_dirhist_4='/home/nagai_takahiro/hands/zipruby-0.3.6'
+let g:netrw_dirhist_5='/home/nagai_takahiro/hands/config/settings'
+let g:netrw_dirhist_6='/home/nagai_takahiro/hands/app/assets/stylesheets/dashboard/tasks'
+let g:netrw_dirhist_7='/home/nagai_takahiro/hands/app/assets/javascripts/dashboard/progress'
+let g:netrw_dirhist_8='/home/nagai_takahiro/hands/config/settings'
+let g:netrw_dirhist_9='/home/nagai_takahiro/hands/db/migrate'
