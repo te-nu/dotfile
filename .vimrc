@@ -15,8 +15,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'yegappan/mru'
 NeoBundle 'vim-scripts/opsplorer'
-NeoBundle "slim-template/vim-slim"
 NeoBundle 'Townk/vim-autoclose'
+
+" ファイルツリーを表示(Ctrl+e)
 NeoBundle 'scrooloose/nerdtree'
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
@@ -36,9 +37,10 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 
-" coffeeとSCSSに対応
+" coffee,SCSS,slimに対応
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'cakebaker/scss-syntax.vim'
+NeoBundle "slim-template/vim-slim"
 
 " color schema
 NeoBundle 'altercation/vim-colors-solarized'
@@ -51,6 +53,7 @@ NeoBundle 'mrkn/mrkn256.vim'
 NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
+NeoBundle 'morhetz/gruvbox'
 
 " HTML,CSS を簡略化して書き、展開を行う
 NeoBundle 'mattn/emmet-vim'
@@ -112,12 +115,15 @@ au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
 " オートコンパイル
 "保存と同時にコンパイルする
-autocmd BufWritePost *.coffee silent make!
+" autocmd BufWritePost *.coffee silent make!
 "エラーがあったら別ウィンドウで表示
 autocmd QuickFixCmdPost * nested cwindow | redraw!
 " Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
 nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 " -------------------------------------------------------------------------------------
+
+"バックスペースのが動作しないものを解消
+set backspace=indent,eol,start
 
 "行番号の表示
 set number
@@ -139,11 +145,12 @@ set title
 
 "カラースキーマの表示
 syntax enable
-set t_Co=256
+"set t_Co=256
+set t_ut=
 
 " slimとhtmlは縦線を表示
-au BufNewFile,BufRead *.slim set cursorcolumn
-au BufNewFile,BufRead *.html set cursorcolumn
+"au BufNewFile,BufRead *.slim set cursorcolumn
+"au BufNewFile,BufRead *.html set cursorcolumn
 
 "かっこの組を表示
 set showmatch
@@ -166,6 +173,15 @@ noremap <S-h> <C-w><
 noremap <S-k> <C-w>-
 noremap <S-j> <C-w>+
 
+" vimrcを保存した時に自動更新
+augroup source-vimrc
+  autocmd!
+  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
+  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+augroup END
+" ,v でvimrcを開く
+nmap ,v :edit $MYVIMRC<CR>
+
 " スペースを可視化
 augroup HighlightTrailingSpaces
   autocmd!
@@ -173,9 +189,12 @@ augroup HighlightTrailingSpaces
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
 
-" molokai
-colorscheme molokai
-let g:molokai_original=1
-let g:rehash256=1
+colorscheme gruvbox
 set background=dark
-highlight Normal ctermbg=none
+
+" molokai
+"colorscheme molokai
+"let g:molokai_original=1
+"let g:rehash256=1
+"set background=dark
+"highlight Normal ctermbg=none

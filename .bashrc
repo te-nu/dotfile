@@ -36,10 +36,11 @@ alias cm="cd /home/nagai_takahiro/hands/app/models"
 alias ch="cd ~/hands";
 alias vrc="vim ~/.vimrc";
 alias brc="vim ~/.bashrc";
+alias tmc="vim ~/.tmux.conf";
 alias v="vim";
 alias vi="vim";
+alias vim="/usr/local/src/vim/src/vim";
 alias sb="source ~/.bashrc";
-alias tmc="vim ~/.tmux.conf";
 alias tmux="tmux -2";
 
 alias c.="cd .."
