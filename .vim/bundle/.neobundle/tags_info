@@ -2,7 +2,6 @@ Lucius
 Zenburn
 accelerated-jk
 ag.vim
-emmet-vim
 gruvbox
 jellybeans.vim
 molokai
@@ -12,7 +11,6 @@ mustang-vim
 neobundle.vim
 nerdcommenter
 nerdtree
-opsplorer
 scss-syntax.vim
 syntastic
 unite-colorscheme
@@ -26,3 +24,4 @@ vim-pyte
 vim-rails
 vim-railscasts-theme
 vim-slim
+yankround.vim

@@ -11,33 +11,44 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" My Bundles here
+" Bundle関係ここから ------------------------------------------------------------------------
+
+" ファイル検索用
 NeoBundle 'rking/ag.vim'
+
+" 統合ユーザインターフェース
+NeoBundle 'Shougo/unite.vim'
+
+" ファイル履歴を表示(スペース二回)
 NeoBundle 'yegappan/mru'
-NeoBundle 'vim-scripts/opsplorer'
+nmap <Space><Space> :MRU<CR>
+
+" かっこを自動で閉じる
 NeoBundle 'Townk/vim-autoclose'
 
 " ファイルツリーを表示(Ctrl+e)
 NeoBundle 'scrooloose/nerdtree'
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
+" コピペ拡張
+NeoBundle 'LeafCage/yankround.vim'
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+let g:yankround_max_history = 100
+nnoremap <Leader><C-p> :<C-u>Unite yankround<CR>
+
 " Railsに色々対応
 NeoBundle 'tpope/vim-rails'
 
-" インデントに色を付けて見やすくする
-"NeoBundle 'nathanaelkane/vim-indent-guides'
-
-" vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
-let g:indent_guides_enable_on_vim_startup = 1
-
-" Ruby向けにendを自動挿入してくれる
+" Rubyファイル編集中endを自動挿入してくれる
 NeoBundle 'tpope/vim-endwise'
 
 " カラースキーマ一覧表示にUnite.vimを使う
-NeoBundle 'Shougo/unite.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 
-" coffee,SCSS,slimに対応
+" coffee, SCSS, slimに対応
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle "slim-template/vim-slim"
@@ -54,9 +65,6 @@ NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'morhetz/gruvbox'
-
-" HTML,CSS を簡略化して書き、展開を行う
-NeoBundle 'mattn/emmet-vim'
 
 " 自動構文チェック
 NeoBundle 'scrooloose/syntastic'
@@ -78,7 +86,7 @@ vmap ,, <Plug>NERDCommenterToggle
 function! s:SID_PREFIX()
   return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
 endfunction
-function! s:my_tabline()  "{{{
+function! s:my_tabline()  
   let s = ''
   for i in range(1, tabpagenr('$'))
     let bufnrs = tabpagebuflist(i)
@@ -95,7 +103,7 @@ function! s:my_tabline()  "{{{
   endfor
   let s .= '%#TabLineFill#%T%=%#TabLine#'
   return s
-endfunction "}}}
+endfunction
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2 " 常にタブラインを表示
 " -------------------------------------------------------------------------------------
@@ -114,15 +122,15 @@ au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 " インデント設定
 autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
 " オートコンパイル
-"保存と同時にコンパイルする
+" 保存と同時にコンパイルする
 " autocmd BufWritePost *.coffee silent make!
-"エラーがあったら別ウィンドウで表示
+" エラーがあったら別ウィンドウで表示
 autocmd QuickFixCmdPost * nested cwindow | redraw!
 " Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
 nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 " -------------------------------------------------------------------------------------
 
-"バックスペースのが動作しないものを解消
+" バックスペースが動作しないものを解消
 set backspace=indent,eol,start
 
 "行番号の表示
@@ -143,14 +151,9 @@ set laststatus=2
 " タイトル表示
 set title
 
-"カラースキーマの表示
+" カラースキーマを有効化
 syntax enable
-"set t_Co=256
 set t_ut=
-
-" slimとhtmlは縦線を表示
-"au BufNewFile,BufRead *.slim set cursorcolumn
-"au BufNewFile,BufRead *.html set cursorcolumn
 
 "かっこの組を表示
 set showmatch
@@ -179,6 +182,7 @@ augroup source-vimrc
   autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
   autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
 augroup END
+
 " ,v でvimrcを開く
 nmap ,v :edit $MYVIMRC<CR>
 
