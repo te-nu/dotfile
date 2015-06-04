@@ -53,19 +53,6 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle "slim-template/vim-slim"
 
-" color schema
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'croaker/mustang-vim'
-NeoBundle 'jeffreyiacono/vim-colors-wombat'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'vim-scripts/Lucius'
-NeoBundle 'vim-scripts/Zenburn'
-NeoBundle 'mrkn/mrkn256.vim'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'therubymug/vim-pyte'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'morhetz/gruvbox'
-
 " 自動構文チェック
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs=1
@@ -82,11 +69,24 @@ let NERDSpaceDelims = 1
 nmap ,, <Plug>NERDCommenterToggle
 vmap ,, <Plug>NERDCommenterToggle
 
+" color schema
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'croaker/mustang-vim'
+NeoBundle 'jeffreyiacono/vim-colors-wombat'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'vim-scripts/Lucius'
+NeoBundle 'vim-scripts/Zenburn'
+NeoBundle 'mrkn/mrkn256.vim'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'therubymug/vim-pyte'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'morhetz/gruvbox'
+
 " タブをかっこよく --------------------------------------------------------------------
 function! s:SID_PREFIX()
   return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
 endfunction
-function! s:my_tabline()  
+function! s:my_tabline()
   let s = ''
   for i in range(1, tabpagenr('$'))
     let bufnrs = tabpagebuflist(i)
@@ -133,15 +133,13 @@ nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 " バックスペースが動作しないものを解消
 set backspace=indent,eol,start
 
-"行番号の表示
+" 行番号の表示
 set number
 
-"タブをスペースにしたり自動インデントにしたり
+" タブをスペースにしたり自動インデントにしたり
 set shiftwidth=2
 set smartindent
 set autoindent
-
-"タブでスペースを入れる
 set tabstop=2
 set softtabstop=2
 
@@ -155,22 +153,25 @@ set title
 syntax enable
 set t_ut=
 
-"かっこの組を表示
+" かっこの組を表示
 set showmatch
 
-"コマンドの補完機能
+" コマンドの補完機能
 set wildmenu
 
-"マウスの有効化
+" マウスの有効化
 set mouse=a
 
-"タブの代わりに空白を使用
+" タブの代わりに空白を使用
 set expandtab
 
-"C-jでエスケープ
+" 検索文字を打ち込むと即検索
+set incsearch
+
+" C-jでエスケープ
 imap <C-j> <esc>
 
-"分割したウィンドウの大きさを変える
+" 分割したウィンドウの大きさを変える
 noremap <S-l> <C-w>>
 noremap <S-h> <C-w><
 noremap <S-k> <C-w>-

@@ -181,14 +181,15 @@
 <Plug>(unite_print_candidate)	unite.txt	/*<Plug>(unite_print_candidate)*
 <Plug>(unite_print_message_log)	unite.txt	/*<Plug>(unite_print_message_log)*
 <Plug>(unite_quick_help)	unite.txt	/*<Plug>(unite_quick_help)*
-<Plug>(unite_quick_match_choose_action)	unite.txt	/*<Plug>(unite_quick_match_choose_action)*
 <Plug>(unite_quick_match_default_action)	unite.txt	/*<Plug>(unite_quick_match_default_action)*
+<Plug>(unite_quick_match_jump)	unite.txt	/*<Plug>(unite_quick_match_jump)*
 <Plug>(unite_redraw)	unite.txt	/*<Plug>(unite_redraw)*
 <Plug>(unite_restart)	unite.txt	/*<Plug>(unite_restart)*
 <Plug>(unite_rotate_next_source)	unite.txt	/*<Plug>(unite_rotate_next_source)*
 <Plug>(unite_rotate_previous_source)	unite.txt	/*<Plug>(unite_rotate_previous_source)*
 <Plug>(unite_skip_cursor_down)	unite.txt	/*<Plug>(unite_skip_cursor_down)*
 <Plug>(unite_skip_cursor_up)	unite.txt	/*<Plug>(unite_skip_cursor_up)*
+<Plug>(unite_smart_preview)	unite.txt	/*<Plug>(unite_smart_preview)*
 <Plug>(unite_toggle_auto_preview)	unite.txt	/*<Plug>(unite_toggle_auto_preview)*
 <Plug>(unite_toggle_mark_all_candidates)	unite.txt	/*<Plug>(unite_toggle_mark_all_candidates)*
 <Plug>(unite_toggle_mark_current_candidate)	unite.txt	/*<Plug>(unite_toggle_mark_current_candidate)*
@@ -274,6 +275,7 @@ NERDTreeAbout	NERD_tree.txt	/*NERDTreeAbout*
 NERDTreeAddKeyMap()	NERD_tree.txt	/*NERDTreeAddKeyMap()*
 NERDTreeAddMenuItem()	NERD_tree.txt	/*NERDTreeAddMenuItem()*
 NERDTreeAddMenuSeparator()	NERD_tree.txt	/*NERDTreeAddMenuSeparator()*
+NERDTreeAddPathFilter()	NERD_tree.txt	/*NERDTreeAddPathFilter()*
 NERDTreeAddSubmenu()	NERD_tree.txt	/*NERDTreeAddSubmenu()*
 NERDTreeBookmarkCommands	NERD_tree.txt	/*NERDTreeBookmarkCommands*
 NERDTreeBookmarkTable	NERD_tree.txt	/*NERDTreeBookmarkTable*
@@ -291,6 +293,7 @@ NERDTreeMenuAPI	NERD_tree.txt	/*NERDTreeMenuAPI*
 NERDTreeOptionDetails	NERD_tree.txt	/*NERDTreeOptionDetails*
 NERDTreeOptionSummary	NERD_tree.txt	/*NERDTreeOptionSummary*
 NERDTreeOptions	NERD_tree.txt	/*NERDTreeOptions*
+NERDTreePathListenerAPI	NERD_tree.txt	/*NERDTreePathListenerAPI*
 NERDTreeRender()	NERD_tree.txt	/*NERDTreeRender()*
 NERD_commenter.txt	NERD_commenter.txt	/*NERD_commenter.txt*
 NERD_tree.txt	NERD_tree.txt	/*NERD_tree.txt*
@@ -371,9 +374,9 @@ g:rails_projections	rails.txt	/*g:rails_projections*
 g:unite_abbr_highlight	unite.txt	/*g:unite_abbr_highlight*
 g:unite_colorscheme_command	unite-colorscheme.txt	/*g:unite_colorscheme_command*
 g:unite_converter_file_directory_width	unite.txt	/*g:unite_converter_file_directory_width*
-g:unite_cursor_line_highlight	unite.txt	/*g:unite_cursor_line_highlight*
 g:unite_cursor_line_time	unite.txt	/*g:unite_cursor_line_time*
 g:unite_data_directory	unite.txt	/*g:unite_data_directory*
+g:unite_enable_auto_select	unite.txt	/*g:unite_enable_auto_select*
 g:unite_enable_short_source_names	unite.txt	/*g:unite_enable_short_source_names*
 g:unite_enable_split_vertically	unite.txt	/*g:unite_enable_split_vertically*
 g:unite_enable_start_insert	unite.txt	/*g:unite_enable_start_insert*
@@ -413,6 +416,7 @@ g:unite_source_menu_menus	unite.txt	/*g:unite_source_menu_menus*
 g:unite_source_neobundle_install_max_processes	neobundle.txt	/*g:unite_source_neobundle_install_max_processes*
 g:unite_source_process_enable_confirm	unite.txt	/*g:unite_source_process_enable_confirm*
 g:unite_source_rec_async_command	unite.txt	/*g:unite_source_rec_async_command*
+g:unite_source_rec_find_args	unite.txt	/*g:unite_source_rec_find_args*
 g:unite_source_rec_git_command	unite.txt	/*g:unite_source_rec_git_command*
 g:unite_source_rec_max_cache_files	unite.txt	/*g:unite_source_rec_max_cache_files*
 g:unite_source_rec_min_cache_files	unite.txt	/*g:unite_source_rec_min_cache_files*
@@ -441,8 +445,8 @@ i_<Plug>(unite_narrowing_path)	unite.txt	/*i_<Plug>(unite_narrowing_path)*
 i_<Plug>(unite_new_candidate)	unite.txt	/*i_<Plug>(unite_new_candidate)*
 i_<Plug>(unite_print_candidate)	unite.txt	/*i_<Plug>(unite_print_candidate)*
 i_<Plug>(unite_print_message_log)	unite.txt	/*i_<Plug>(unite_print_message_log)*
-i_<Plug>(unite_quick_match_choose_action)	unite.txt	/*i_<Plug>(unite_quick_match_choose_action)*
 i_<Plug>(unite_quick_match_default_action)	unite.txt	/*i_<Plug>(unite_quick_match_default_action)*
+i_<Plug>(unite_quick_match_jump)	unite.txt	/*i_<Plug>(unite_quick_match_jump)*
 i_<Plug>(unite_redraw)	unite.txt	/*i_<Plug>(unite_redraw)*
 i_<Plug>(unite_select_next_line)	unite.txt	/*i_<Plug>(unite_select_next_line)*
 i_<Plug>(unite_select_next_page)	unite.txt	/*i_<Plug>(unite_select_next_page)*
@@ -470,9 +474,9 @@ neobundle#has_fresh_cache()	neobundle.txt	/*neobundle#has_fresh_cache()*
 neobundle#hooks	neobundle.txt	/*neobundle#hooks*
 neobundle#is_installed()	neobundle.txt	/*neobundle#is_installed()*
 neobundle#is_sourced()	neobundle.txt	/*neobundle#is_sourced()*
+neobundle#load_cache()	neobundle.txt	/*neobundle#load_cache()*
 neobundle#load_toml()	neobundle.txt	/*neobundle#load_toml()*
 neobundle#local()	neobundle.txt	/*neobundle#local()*
-neobundle#rc()	neobundle.txt	/*neobundle#rc()*
 neobundle#source()	neobundle.txt	/*neobundle#source()*
 neobundle#tap()	neobundle.txt	/*neobundle#tap()*
 neobundle#tapped	neobundle.txt	/*neobundle#tapped*
@@ -503,6 +507,7 @@ neobundle-options-focus	neobundle.txt	/*neobundle-options-focus*
 neobundle-options-force	neobundle.txt	/*neobundle-options-force*
 neobundle-options-gui	neobundle.txt	/*neobundle-options-gui*
 neobundle-options-hooks	neobundle.txt	/*neobundle-options-hooks*
+neobundle-options-install_process_timeout	neobundle.txt	/*neobundle-options-install_process_timeout*
 neobundle-options-lazy	neobundle.txt	/*neobundle-options-lazy*
 neobundle-options-name	neobundle.txt	/*neobundle-options-name*
 neobundle-options-overwrite	neobundle.txt	/*neobundle-options-overwrite*
@@ -721,6 +726,7 @@ syntastic-vim-auto-save	syntastic.txt	/*syntastic-vim-auto-save*
 syntastic-vim-go	syntastic.txt	/*syntastic-vim-go*
 syntastic-vim-virtualenv	syntastic.txt	/*syntastic-vim-virtualenv*
 syntastic-ycm	syntastic.txt	/*syntastic-ycm*
+syntastic-zsh	syntastic.txt	/*syntastic-zsh*
 syntastic.txt	syntastic.txt	/*syntastic.txt*
 toggle-background	solarized.txt	/*toggle-background*
 toggle-bg	solarized.txt	/*toggle-bg*
@@ -886,7 +892,6 @@ unite-options-candidate-icon	unite.txt	/*unite-options-candidate-icon*
 unite-options-col	unite.txt	/*unite-options-col*
 unite-options-complete	unite.txt	/*unite-options-complete*
 unite-options-create	unite.txt	/*unite-options-create*
-unite-options-cursor-line-highlight	unite.txt	/*unite-options-cursor-line-highlight*
 unite-options-cursor-line-time	unite.txt	/*unite-options-cursor-line-time*
 unite-options-default-action	unite.txt	/*unite-options-default-action*
 unite-options-direction	unite.txt	/*unite-options-direction*
@@ -913,6 +918,7 @@ unite-options-no-resize	unite.txt	/*unite-options-no-resize*
 unite-options-no-restore	unite.txt	/*unite-options-no-restore*
 unite-options-no-split	unite.txt	/*unite-options-no-split*
 unite-options-path	unite.txt	/*unite-options-path*
+unite-options-previewheight	unite.txt	/*unite-options-previewheight*
 unite-options-profile-name	unite.txt	/*unite-options-profile-name*
 unite-options-prompt	unite.txt	/*unite-options-prompt*
 unite-options-prompt-direction	unite.txt	/*unite-options-prompt-direction*
@@ -928,6 +934,7 @@ unite-options-sync	unite.txt	/*unite-options-sync*
 unite-options-tab	unite.txt	/*unite-options-tab*
 unite-options-toggle	unite.txt	/*unite-options-toggle*
 unite-options-truncate	unite.txt	/*unite-options-truncate*
+unite-options-truncate-width	unite.txt	/*unite-options-truncate-width*
 unite-options-unique	unite.txt	/*unite-options-unique*
 unite-options-update-time	unite.txt	/*unite-options-update-time*
 unite-options-verbose	unite.txt	/*unite-options-verbose*
@@ -939,6 +946,8 @@ unite-options-wipe	unite.txt	/*unite-options-wipe*
 unite-options-wrap	unite.txt	/*unite-options-wrap*
 unite-source-alias	unite.txt	/*unite-source-alias*
 unite-source-arg-!	unite.txt	/*unite-source-arg-!*
+unite-source-arg-?	unite.txt	/*unite-source-arg-?*
+unite-source-arg-?!	unite.txt	/*unite-source-arg-?!*
 unite-source-attribute-action_table	unite.txt	/*unite-source-attribute-action_table*
 unite-source-attribute-alias_table	unite.txt	/*unite-source-attribute-alias_table*
 unite-source-attribute-async_gather_candidates	unite.txt	/*unite-source-attribute-async_gather_candidates*
@@ -978,6 +987,7 @@ unite-source-directory/new	unite.txt	/*unite-source-directory\/new*
 unite-source-file	unite.txt	/*unite-source-file*
 unite-source-file/async	unite.txt	/*unite-source-file\/async*
 unite-source-file/new	unite.txt	/*unite-source-file\/new*
+unite-source-file_list	unite.txt	/*unite-source-file_list*
 unite-source-file_point	unite.txt	/*unite-source-file_point*
 unite-source-file_rec	unite.txt	/*unite-source-file_rec*
 unite-source-file_rec/async	unite.txt	/*unite-source-file_rec\/async*
