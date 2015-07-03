@@ -52,6 +52,8 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle "slim-template/vim-slim"
+NeoBundle 'nginx.vim'
+au BufRead,BufNewFile /etc/nginx/* set ft=nginx
 
 " 自動構文チェック
 NeoBundle 'scrooloose/syntastic'
@@ -62,6 +64,10 @@ let g:syntastic_auto_loc_list=2
 NeoBundle 'rhysd/accelerated-jk'
 nmap j <Plug>(accelerated_jk_gj)
 nmap k <Plug>(accelerated_jk_gk)
+
+" カーソルキーをタブ切り替えに
+nmap <Left> gT
+nmap <Right> gt
 
 " nerdcommenter の設定(カンマ二つでコメントのオンオフ)
 NeoBundle 'scrooloose/nerdcommenter'
@@ -81,6 +87,8 @@ NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'morhetz/gruvbox'
+NeoBundle 'jonathanfilip/vim-lucius'
+NeoBundle 'cocopon/iceberg.vim'
 
 " タブをかっこよく --------------------------------------------------------------------
 function! s:SID_PREFIX()

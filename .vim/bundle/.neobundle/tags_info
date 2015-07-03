@@ -3,6 +3,7 @@ Zenburn
 accelerated-jk
 ag.vim
 gruvbox
+iceberg.vim
 jellybeans.vim
 molokai
 mrkn256.vim
@@ -11,6 +12,7 @@ mustang-vim
 neobundle.vim
 nerdcommenter
 nerdtree
+nginx.vim
 scss-syntax.vim
 syntastic
 unite-colorscheme
@@ -20,6 +22,7 @@ vim-coffee-script
 vim-colors-solarized
 vim-colors-wombat
 vim-endwise
+vim-lucius
 vim-pyte
 vim-rails
 vim-railscasts-theme
