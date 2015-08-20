@@ -132,6 +132,7 @@
 :NeoBundleUpdate	neobundle.txt	/*:NeoBundleUpdate*
 :NeoBundleUpdate!	neobundle.txt	/*:NeoBundleUpdate!*
 :NeoBundleUpdatesLog	neobundle.txt	/*:NeoBundleUpdatesLog*
+:Switch	switch.txt	/*:Switch*
 :SyntasticCheck	syntastic.txt	/*:SyntasticCheck*
 :SyntasticInfo	syntastic.txt	/*:SyntasticInfo*
 :SyntasticReset	syntastic.txt	/*:SyntasticReset*
@@ -328,6 +329,7 @@ ag	ag.txt	/*ag*
 ag-mappings	ag.txt	/*ag-mappings*
 ag-options	ag.txt	/*ag-options*
 ag.txt	ag.txt	/*ag.txt*
+b:switch_definitions	switch.txt	/*b:switch_definitions*
 before	solarized.txt	/*before*
 config/rails.vim	rails.txt	/*config\/rails.vim*
 filter-overrides	syntastic.txt	/*filter-overrides*
@@ -371,6 +373,11 @@ g:rails_abbreviations	rails.txt	/*g:rails_abbreviations*
 g:rails_ctags_arguments	rails.txt	/*g:rails_ctags_arguments*
 g:rails_gem_projections	rails.txt	/*g:rails_gem_projections*
 g:rails_projections	rails.txt	/*g:rails_projections*
+g:switch_builtins	switch.txt	/*g:switch_builtins*
+g:switch_definitions	switch.txt	/*g:switch_definitions*
+g:switch_find_smallest_match	switch.txt	/*g:switch_find_smallest_match*
+g:switch_mapping	switch.txt	/*g:switch_mapping*
+g:switch_no_builtins	switch.txt	/*g:switch_no_builtins*
 g:unite_abbr_highlight	unite.txt	/*g:unite_abbr_highlight*
 g:unite_colorscheme_command	unite-colorscheme.txt	/*g:unite_colorscheme_command*
 g:unite_converter_file_directory_width	unite.txt	/*g:unite_converter_file_directory_width*
@@ -689,6 +696,16 @@ solarized-options	solarized.txt	/*solarized-options*
 solarized-term	solarized.txt	/*solarized-term*
 solarized-togglebg	solarized.txt	/*solarized-togglebg*
 solarized.vim	solarized.txt	/*solarized.vim*
+switch	switch.txt	/*switch*
+switch-builtins	switch.txt	/*switch-builtins*
+switch-contents	switch.txt	/*switch-contents*
+switch-customization	switch.txt	/*switch-customization*
+switch-installation	switch.txt	/*switch-installation*
+switch-issues	switch.txt	/*switch-issues*
+switch-settings	switch.txt	/*switch-settings*
+switch-similar-plugins	switch.txt	/*switch-similar-plugins*
+switch-usage	switch.txt	/*switch-usage*
+switch.txt	switch.txt	/*switch.txt*
 syntastic	syntastic.txt	/*syntastic*
 syntastic-about	syntastic.txt	/*syntastic-about*
 syntastic-aggregating-errors	syntastic.txt	/*syntastic-aggregating-errors*
@@ -944,6 +961,7 @@ unite-options-winheight	unite.txt	/*unite-options-winheight*
 unite-options-winwidth	unite.txt	/*unite-options-winwidth*
 unite-options-wipe	unite.txt	/*unite-options-wipe*
 unite-options-wrap	unite.txt	/*unite-options-wrap*
+unite-rails	unite-rails.txt	/*unite-rails*
 unite-source-alias	unite.txt	/*unite-source-alias*
 unite-source-arg-!	unite.txt	/*unite-source-arg-!*
 unite-source-arg-?	unite.txt	/*unite-source-arg-?*

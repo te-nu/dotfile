@@ -41,6 +41,29 @@ nnoremap <Leader><C-p> :<C-u>Unite yankround<CR>
 
 " Railsに色々対応
 NeoBundle 'tpope/vim-rails'
+NeoBundle 'basyura/unite-rails'
+
+"------------------------------------
+" Unite-rails.vim
+"------------------------------------
+function! UniteRailsSetting()
+  nnoremap <buffer><C-H><C-H><C-H>  :<C-U>Unite rails/view<CR>
+  nnoremap <buffer><C-H><C-H>       :<C-U>Unite rails/model<CR>
+  nnoremap <buffer><C-H>            :<C-U>Unite rails/controller<CR>
+
+  nnoremap <buffer><C-H>c           :<C-U>Unite rails/config<CR>
+  nnoremap <buffer><C-H>s           :<C-U>Unite rails/spec<CR>
+  nnoremap <buffer><C-H>m           :<C-U>Unite rails/db -input=migrate<CR>
+  nnoremap <buffer><C-H>l           :<C-U>Unite rails/lib<CR>
+  nnoremap <buffer><expr><C-H>g     ':e '.b:rails_root.'/Gemfile<CR>'
+  nnoremap <buffer><expr><C-H>r     ':e '.b:rails_root.'/config/routes.rb<CR>'
+  nnoremap <buffer><expr><C-H>se    ':e '.b:rails_root.'/db/seeds.rb<CR>'
+  nnoremap <buffer><C-H>ra          :<C-U>Unite rails/rake<CR>
+  nnoremap <buffer><C-H>h           :<C-U>Unite rails/heroku<CR>
+endfunction
+aug MyAutoCmd
+  au User Rails call UniteRailsSetting()
+aug END
 
 " Rubyファイル編集中endを自動挿入してくれる
 NeoBundle 'tpope/vim-endwise'
@@ -48,12 +71,20 @@ NeoBundle 'tpope/vim-endwise'
 " カラースキーマ一覧表示にUnite.vimを使う
 NeoBundle 'ujihisa/unite-colorscheme'
 
-" coffee, SCSS, slimに対応
+" coffee, SCSS, slim, nginxに対応
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle "slim-template/vim-slim"
 NeoBundle 'nginx.vim'
 au BufRead,BufNewFile /etc/nginx/* set ft=nginx
+
+" true, false等の切り替え
+NeoBundle "AndrewRadev/switch.vim"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
 
 " 自動構文チェック
 NeoBundle 'scrooloose/syntastic'
@@ -90,6 +121,28 @@ NeoBundle 'morhetz/gruvbox'
 NeoBundle 'jonathanfilip/vim-lucius'
 NeoBundle 'cocopon/iceberg.vim'
 
+call neobundle#end()
+let g:treeExplVertical=1
+
+" Required
+filetype plugin indent on
+
+NeoBundleCheck
+
+" coffee script -----------------------------------------------------------------------
+" vimにcoffeeファイルタイプを認識させる
+au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
+" インデント設定
+autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
+" オートコンパイル
+" 保存と同時にコンパイルする
+" autocmd BufWritePost *.coffee silent make!
+" エラーがあったら別ウィンドウで表示
+autocmd QuickFixCmdPost * nested cwindow | redraw!
+" Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
+nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
+" -------------------------------------------------------------------------------------
+
 " タブをかっこよく --------------------------------------------------------------------
 function! s:SID_PREFIX()
   return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
@@ -116,28 +169,6 @@ let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2 " 常にタブラインを表示
 " -------------------------------------------------------------------------------------
 
-call neobundle#end()
-let g:treeExplVertical=1
-
-" Required
-filetype plugin indent on
-
-NeoBundleCheck
-
-" coffee script -----------------------------------------------------------------------
-" vimにcoffeeファイルタイプを認識させる
-au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
-" インデント設定
-autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
-" オートコンパイル
-" 保存と同時にコンパイルする
-" autocmd BufWritePost *.coffee silent make!
-" エラーがあったら別ウィンドウで表示
-autocmd QuickFixCmdPost * nested cwindow | redraw!
-" Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
-nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
-" -------------------------------------------------------------------------------------
-
 " バックスペースが動作しないものを解消
 set backspace=indent,eol,start
 
@@ -150,6 +181,7 @@ set smartindent
 set autoindent
 set tabstop=2
 set softtabstop=2
+set expandtab
 
 " ステータスバーを2行に
 set laststatus=2
@@ -170,20 +202,11 @@ set wildmenu
 " マウスの有効化
 set mouse=a
 
-" タブの代わりに空白を使用
-set expandtab
-
 " 検索文字を打ち込むと即検索
 set incsearch
 
 " C-jでエスケープ
 imap <C-j> <esc>
-
-" 分割したウィンドウの大きさを変える
-noremap <S-l> <C-w>>
-noremap <S-h> <C-w><
-noremap <S-k> <C-w>-
-noremap <S-j> <C-w>+
 
 " vimrcを保存した時に自動更新
 augroup source-vimrc
@@ -202,12 +225,16 @@ augroup HighlightTrailingSpaces
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
 
+
+" color schema--------------------------------------------------
+
+" gruvbox
 colorscheme gruvbox
 set background=dark
 
 " molokai
-"colorscheme molokai
-"let g:molokai_original=1
-"let g:rehash256=1
-"set background=dark
-"highlight Normal ctermbg=none
+" colorscheme molokai
+" let g:molokai_original=1
+" let g:rehash256=1
+" set background=dark
+" highlight Normal ctermbg=none

@@ -34,6 +34,7 @@ alias cj="cd /home/nagai_takahiro/hands/app/assets/javascripts";
 alias cv="cd /home/nagai_takahiro/hands/app/views"
 alias cm="cd /home/nagai_takahiro/hands/app/models"
 alias ch="cd ~/hands";
+alias cs="cd ~/Snufkin";
 alias vrc="vim ~/.vimrc";
 alias brc="vim ~/.bashrc";
 alias tmc="vim ~/.tmux.conf";

@@ -14,8 +14,10 @@ nerdcommenter
 nerdtree
 nginx.vim
 scss-syntax.vim
+switch.vim
 syntastic
 unite-colorscheme
+unite-rails
 unite.vim
 vim-autoclose
 vim-coffee-script
