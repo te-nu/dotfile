@@ -24,7 +24,9 @@ vim-coffee-script
 vim-colors-solarized
 vim-colors-wombat
 vim-endwise
+vim-hybrid
 vim-lucius
+vim-monokai
 vim-pyte
 vim-rails
 vim-railscasts-theme

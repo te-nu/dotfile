@@ -117,9 +117,11 @@ NeoBundle 'mrkn/mrkn256.vim'
 NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
+NeoBundle 'sickill/vim-monokai'
 NeoBundle 'morhetz/gruvbox'
 NeoBundle 'jonathanfilip/vim-lucius'
 NeoBundle 'cocopon/iceberg.vim'
+NeoBundle 'w0ng/vim-hybrid'
 
 call neobundle#end()
 let g:treeExplVertical=1
@@ -189,10 +191,6 @@ set laststatus=2
 " タイトル表示
 set title
 
-" カラースキーマを有効化
-syntax enable
-set t_ut=
-
 " かっこの組を表示
 set showmatch
 
@@ -228,9 +226,17 @@ augroup END
 
 " color schema--------------------------------------------------
 
+" カラースキーマを有効化
+syntax enable
+set t_ut=
+
 " gruvbox
 colorscheme gruvbox
 set background=dark
+set t_Co=256
+
+" colorscheme jellybeans
+" colorscheme hybrid
 
 " molokai
 " colorscheme molokai
