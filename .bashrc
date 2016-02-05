@@ -43,6 +43,7 @@ alias vi="vim";
 alias vim="/usr/local/src/vim/src/vim";
 alias sb="source ~/.bashrc";
 alias tmux="tmux -2";
+alias g="git"
 
 alias c.="cd .."
 LS_COLORS='di=01;36'
@@ -62,3 +63,24 @@ alias cd=cdls
 export PATH="$HOME/.gem/ruby/2.0.0/bin:$PATH"
 
 source ~/.git-completion.bash
+
+# 重複履歴を無視
+export HISTCONTROL=ignoreboth:erasedups
+
+# 履歴保存対象から外す
+export HISTIGNORE="fg*:bg*:history*:wmctrl*:exit*:ls -al:cd ~"
+
+# コマンド履歴にコマンドを使ったの時刻を記録する
+export HISTTIMEFORMAT='%Y%m%d %T '
+
+export HISTSIZE=10000
+
+# settings for peco
+_replace_by_history() {
+    local l=$(HISTTIMEFORMAT= history | cut -d" " -f4- | tac | sed -e 's/^\s*[0-9]*    \+\s\+//' | peco --query "$READLINE_LINE")
+    READLINE_LINE="$l"
+    READLINE_POINT=${#l}
+}
+bind -x '"\C-r": _replace_by_history'
+bind    '"\C-xr": reverse-search-history'
+export PATH=`pwd`/peco_linux_amd64:$PATH

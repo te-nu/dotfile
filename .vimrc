@@ -188,7 +188,8 @@ set softtabstop=2
 set expandtab
 
 " ステータスバーを2行に
-set laststatus=2
+" set laststatus=2
+" set statusline=2
 
 " タイトル表示
 set title
@@ -233,12 +234,12 @@ syntax enable
 set t_ut=
 
 " gruvbox
-colorscheme gruvbox
+" colorscheme gruvbox
 set background=dark
-set t_Co=256
+" set t_Co=256
 
 " colorscheme jellybeans
-" colorscheme hybrid
+colorscheme hybrid
 
 " molokai
 " colorscheme molokai
