@@ -45,6 +45,9 @@ alias sb="source ~/.bashrc";
 alias tmux="tmux -2";
 alias g="git"
 
+alias cx="cd /home/nagai_takahiro/xeus"
+alias be="bundle exec"
+
 alias c.="cd .."
 LS_COLORS='di=01;36'
 export LS_COLORS
@@ -59,6 +62,7 @@ function cdls() {
             ls;
         }
 alias cd=cdls
+
 # User specific aliases and functions
 export PATH="$HOME/.gem/ruby/2.0.0/bin:$PATH"
 

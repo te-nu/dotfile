@@ -108,6 +108,12 @@ vmap ,, <Plug>NERDCommenterToggle
 
 NeoBundle 'koron/codic-vim'
 
+NeoBundle 'itchyny/lightline.vim'
+set laststatus=2
+let g:lightline = {
+     \ 'colorscheme': 'wombat',
+     \ }
+
 " color schema
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'croaker/mustang-vim'
@@ -234,12 +240,12 @@ syntax enable
 set t_ut=
 
 " gruvbox
-" colorscheme gruvbox
+colorscheme gruvbox
 set background=dark
-" set t_Co=256
+set t_Co=256
 
 " colorscheme jellybeans
-colorscheme hybrid
+" colorscheme hybrid
 
 " molokai
 " colorscheme molokai
