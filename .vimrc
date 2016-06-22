@@ -1,180 +1,39 @@
-if !1 | finish | endif
+" プラグインが実際にインストールされるディレクトリ
+let s:dein_dir = expand('~/.cache/dein')
+" dein.vim 本体
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
+" dein.vim がなければ github から落としてくる
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+" 設定開始
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+  " プラグインリストを収めた TOML ファイル
+  " 予め TOML ファイル（後述）を用意しておく
+  let g:rc_dir    = expand('~/.vim/rc')
+  let s:toml      = g:rc_dir . '/dein.toml'
+  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
-" Bundle関係ここから ------------------------------------------------------------------------
+  " TOML を読み込み、キャッシュしておく
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-" ファイル検索用
-NeoBundle 'rking/ag.vim'
-
-" 統合ユーザインターフェース
-NeoBundle 'Shougo/unite.vim'
-
-" ファイル履歴を表示(スペース二回)
-NeoBundle 'yegappan/mru'
-nmap <Space><Space> :MRU<CR>
-
-" かっこを自動で閉じる
-" NeoBundle 'Townk/vim-autoclose'
-
-" ファイルツリーを表示(Ctrl+e)
-NeoBundle 'scrooloose/nerdtree'
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
-
-" コピペ拡張
-NeoBundle 'LeafCage/yankround.vim'
-nmap p <Plug>(yankround-p)
-nmap P <Plug>(yankround-P)
-nmap <C-p> <Plug>(yankround-prev)
-nmap <C-n> <Plug>(yankround-next)
-let g:yankround_max_history = 100
-nnoremap <Leader><C-p> :<C-u>Unite yankround<CR>
-
-" Railsに色々対応
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'basyura/unite-rails'
-
-"------------------------------------
-" Unite-rails.vim
-"------------------------------------
-function! UniteRailsSetting()
-  nnoremap <buffer><C-H><C-H><C-H>  :<C-U>Unite rails/view<CR>
-  nnoremap <buffer><C-H><C-H>       :<C-U>Unite rails/model<CR>
-  nnoremap <buffer><C-H>            :<C-U>Unite rails/controller<CR>
-
-  nnoremap <buffer><C-H>c           :<C-U>Unite rails/config<CR>
-  nnoremap <buffer><C-H>s           :<C-U>Unite rails/spec<CR>
-  nnoremap <buffer><C-H>m           :<C-U>Unite rails/db -input=migrate<CR>
-  nnoremap <buffer><C-H>l           :<C-U>Unite rails/lib<CR>
-  nnoremap <buffer><expr><C-H>g     ':e '.b:rails_root.'/Gemfile<CR>'
-  nnoremap <buffer><expr><C-H>r     ':e '.b:rails_root.'/config/routes.rb<CR>'
-  nnoremap <buffer><expr><C-H>se    ':e '.b:rails_root.'/db/seeds.rb<CR>'
-  nnoremap <buffer><C-H>ra          :<C-U>Unite rails/rake<CR>
-  nnoremap <buffer><C-H>h           :<C-U>Unite rails/heroku<CR>
-endfunction
-aug MyAutoCmd
-  au User Rails call UniteRailsSetting()
-aug END
-
-" Rubyファイル編集中endを自動挿入してくれる
-NeoBundle 'tpope/vim-endwise'
-
-" カラースキーマ一覧表示にUnite.vimを使う
-NeoBundle 'ujihisa/unite-colorscheme'
-
-" coffee, SCSS, slim, nginxに対応
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'cakebaker/scss-syntax.vim'
-NeoBundle "slim-template/vim-slim"
-NeoBundle 'nginx.vim'
-au BufRead,BufNewFile /etc/nginx/* set ft=nginx
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
+  " 設定終了
+  call dein#end()
+  call dein#save_state()
 endif
 
-" 自動構文チェック
-NeoBundle 'scrooloose/syntastic'
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-
-" jkキーを加速
-NeoBundle 'rhysd/accelerated-jk'
-nmap j <Plug>(accelerated_jk_gj)
-nmap k <Plug>(accelerated_jk_gk)
-
-" カーソルキーをタブ切り替えに
-nmap <Left> gT
-nmap <Right> gt
-
-" nerdcommenter の設定(カンマ二つでコメントのオンオフ)
-NeoBundle 'scrooloose/nerdcommenter'
-let NERDSpaceDelims = 1
-nmap ,, <Plug>NERDCommenterToggle
-vmap ,, <Plug>NERDCommenterToggle
-
-NeoBundle 'koron/codic-vim'
-
-NeoBundle 'itchyny/lightline.vim'
-set laststatus=2
-let g:lightline = {
-     \ 'colorscheme': 'wombat',
-     \ }
-
-" color schema
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'croaker/mustang-vim'
-NeoBundle 'jeffreyiacono/vim-colors-wombat'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'vim-scripts/Lucius'
-NeoBundle 'vim-scripts/Zenburn'
-NeoBundle 'mrkn/mrkn256.vim'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'therubymug/vim-pyte'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'sickill/vim-monokai'
-NeoBundle 'morhetz/gruvbox'
-NeoBundle 'jonathanfilip/vim-lucius'
-NeoBundle 'cocopon/iceberg.vim'
-NeoBundle 'w0ng/vim-hybrid'
-
-call neobundle#end()
-let g:treeExplVertical=1
-
-" Required
-filetype plugin indent on
-
-NeoBundleCheck
-
-" coffee script -----------------------------------------------------------------------
-" vimにcoffeeファイルタイプを認識させる
-au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
-" インデント設定
-autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
-" オートコンパイル
-" 保存と同時にコンパイルする
-" autocmd BufWritePost *.coffee silent make!
-" エラーがあったら別ウィンドウで表示
-autocmd QuickFixCmdPost * nested cwindow | redraw!
-" Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
-nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
-" -------------------------------------------------------------------------------------
-
-" タブをかっこよく --------------------------------------------------------------------
-function! s:SID_PREFIX()
-  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
-endfunction
-function! s:my_tabline()
-  let s = ''
-  for i in range(1, tabpagenr('$'))
-    let bufnrs = tabpagebuflist(i)
-    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
-    let no = i  " display 0-origin tabpagenr.
-    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
-    let title = fnamemodify(bufname(bufnr), ':t')
-    let title = '[' . title . ']'
-    let s .= '%'.i.'T'
-    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
-    let s .= no . ':' . title
-    let s .= mod
-    let s .= '%#TabLineFill# '
-  endfor
-  let s .= '%#TabLineFill#%T%=%#TabLine#'
-  return s
-endfunction
-let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
-set showtabline=2 " 常にタブラインを表示
-" -------------------------------------------------------------------------------------
+" もし、未インストールものものがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
 
 " バックスペースが動作しないものを解消
 set backspace=indent,eol,start
@@ -184,15 +43,10 @@ set number
 
 " タブをスペースにしたり自動インデントにしたり
 set shiftwidth=2
-set smartindent
 set autoindent
 set tabstop=2
 set softtabstop=2
 set expandtab
-
-" ステータスバーを2行に
-" set laststatus=2
-" set statusline=2
 
 " タイトル表示
 set title
@@ -215,7 +69,36 @@ set noswapfile
 " C-jでエスケープ
 imap <C-j> <esc>
 
-" vimrcを保存した時に自動更新
+" カーソルキーをタブ切り替えに
+nmap <Left> gT
+nmap <Right> gt
+
+" タブをかっこよく --------------------------------------------------------------------
+function! s:SID_PREFIX()
+ return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+function! s:my_tabline()
+ let s = ''
+ for i in range(1, tabpagenr('$'))
+   let bufnrs = tabpagebuflist(i)
+   let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+   let no = i  " display 0-origin tabpagenr.
+   let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+   let title = fnamemodify(bufname(bufnr), ':t')
+   let title = '[' . title . ']'
+   let s .= '%'.i.'T'
+   let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+   let s .= no . ':' . title
+   let s .= mod
+   let s .= '%#TabLineFill# '
+ endfor
+ let s .= '%#TabLineFill#%T%=%#TabLine#'
+ return s
+endfunction
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+set showtabline=2 " 常にタブラインを表示
+
+" vimrc自動更新
 augroup source-vimrc
   autocmd!
   autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
@@ -232,24 +115,39 @@ augroup HighlightTrailingSpaces
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
 
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
 
-" color schema--------------------------------------------------
+" coffee script -----------------------------------------------------------------------
+" vimにcoffeeファイルタイプを認識させる
+au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
+" インデント設定
+autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
+" オートコンパイル
+" 保存と同時にコンパイルする
+" autocmd BufWritePost *.coffee silent make!
+" エラーがあったら別ウィンドウで表示
+autocmd QuickFixCmdPost * nested cwindow | redraw!
+" Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
+nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
 " カラースキーマを有効化
 syntax enable
 set t_ut=
 
 " gruvbox
-" colorscheme gruvbox
-" set background=dark
+colorscheme gruvbox
+set background=dark
 " set t_Co=256
 
 " colorscheme jellybeans
-" colorscheme hybrid
+"colorscheme hybrid
 
 " molokai
-colorscheme molokai
-let g:molokai_original=1
-let g:rehash256=1
-set background=dark
-highlight Normal ctermbg=none
+"colorscheme molokai
+"let g:molokai_original=1
+"let g:rehash256=1
+"set background=dark
+"highlight Normal ctermbg=none

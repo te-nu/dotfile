@@ -1,0 +1,155 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'rking/ag.vim'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'yegappan/mru'
+hook_add = 'nmap <Space><Space> :MRU<CR>'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'LeafCage/yankround.vim'
+hook_add = '''
+  nmap p <Plug>(yankround-p)
+  nmap P <Plug>(yankround-P)
+  nmap <C-p> <Plug>(yankround-prev)
+  nmap <C-n> <Plug>(yankround-next)
+  let g:yankround_max_history = 100
+  nnoremap <Leader><C-p> :<C-u>Unite yankround<CR>
+'''
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+
+[[plugins]]
+repo = 'basyura/unite-rails'
+hook_add = '''
+  function! UniteRailsSetting()
+    nnoremap <buffer><C-H><C-H><C-H>  :<C-U>Unite rails/view<CR>
+    nnoremap <buffer><C-H><C-H>       :<C-U>Unite rails/model<CR>
+    nnoremap <buffer><C-H>            :<C-U>Unite rails/controller<CR>
+
+    nnoremap <buffer><C-H>c           :<C-U>Unite rails/config<CR>
+    nnoremap <buffer><C-H>s           :<C-U>Unite rails/spec<CR>
+    nnoremap <buffer><C-H>m           :<C-U>Unite rails/db -input=migrate<CR>
+    nnoremap <buffer><C-H>l           :<C-U>Unite rails/lib<CR>
+    nnoremap <buffer><expr><C-H>g     ':e '.b:rails_root.'/Gemfile<CR>'
+    nnoremap <buffer><expr><C-H>r     ':e '.b:rails_root.'/config/routes.rb<CR>'
+    nnoremap <buffer><expr><C-H>se    ':e '.b:rails_root.'/db/seeds.rb<CR>'
+    nnoremap <buffer><C-H>ra          :<C-U>Unite rails/rake<CR>
+    nnoremap <buffer><C-H>h           :<C-U>Unite rails/heroku<CR>
+  endfunction
+  aug MyAutoCmd
+    au User Rails call UniteRailsSetting()
+  aug END
+'''
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+[[plugins]]
+repo = 'ujihisa/unite-colorscheme'
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+on_ft = 'coffee'
+
+[[plugins]]
+repo = 'cakebaker/scss-syntax.vim'
+on_ft = 'scss'
+
+[[plugins]]
+repo = "slim-template/vim-slim"
+on_ft = 'slim'
+
+[[plugins]]
+repo = 'nginx.vim'
+hook_add = 'au BufRead,BufNewFile /etc/nginx/* set ft=nginx'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+hook_add = '''
+  let g:syntastic_enable_signs=1
+  let g:syntastic_auto_loc_list=2
+'''
+
+[[plugins]]
+repo = 'rhysd/accelerated-jk'
+hook_add = '''
+  nmap j <Plug>(accelerated_jk_gj)
+  nmap k <Plug>(accelerated_jk_gk)
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+hook_add = '''
+  filetype plugin indent on
+  let NERDSpaceDelims = 1
+  nmap ,, <Plug>NERDCommenterToggle
+  vmap ,, <Plug>NERDCommenterToggle
+'''
+
+[[plugins]]
+repo = 'koron/codic-vim'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+  let g:lightline = {
+       \ 'colorscheme': 'wombat',
+       \ }
+  set laststatus=2
+'''
+
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+
+[[plugins]]
+repo = 'croaker/mustang-vim'
+
+[[plugins]]
+repo = 'jeffreyiacono/vim-colors-wombat'
+
+[[plugins]]
+repo = 'nanotech/jellybeans.vim'
+
+[[plugins]]
+repo = 'vim-scripts/Lucius'
+
+[[plugins]]
+repo = 'vim-scripts/Zenburn'
+
+[[plugins]]
+repo = 'mrkn/mrkn256.vim'
+
+[[plugins]]
+repo = 'jpo/vim-railscasts-theme'
+
+[[plugins]]
+repo = 'therubymug/vim-pyte'
+
+[[plugins]]
+repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'sickill/vim-monokai'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'
+
+[[plugins]]
+repo = 'jonathanfilip/vim-lucius'
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
