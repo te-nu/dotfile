@@ -16,7 +16,6 @@ nerdcommenter
 nerdtree
 nginx.vim
 scss-syntax.vim
-switch.vim
 syntastic
 unite-colorscheme
 unite-rails

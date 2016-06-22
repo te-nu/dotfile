@@ -24,7 +24,7 @@ NeoBundle 'yegappan/mru'
 nmap <Space><Space> :MRU<CR>
 
 " かっこを自動で閉じる
-NeoBundle 'Townk/vim-autoclose'
+" NeoBundle 'Townk/vim-autoclose'
 
 " ファイルツリーを表示(Ctrl+e)
 NeoBundle 'scrooloose/nerdtree'
@@ -77,9 +77,6 @@ NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle "slim-template/vim-slim"
 NeoBundle 'nginx.vim'
 au BufRead,BufNewFile /etc/nginx/* set ft=nginx
-
-" true, false等の切り替え
-NeoBundle "AndrewRadev/switch.vim"
 
 " For snippet_complete marker.
 if has('conceal')
@@ -212,6 +209,9 @@ set mouse=a
 " 検索文字を打ち込むと即検索
 set incsearch
 
+" スワップファイルを作らない
+set noswapfile
+
 " C-jでエスケープ
 imap <C-j> <esc>
 
@@ -240,16 +240,16 @@ syntax enable
 set t_ut=
 
 " gruvbox
-colorscheme gruvbox
-set background=dark
-set t_Co=256
+" colorscheme gruvbox
+" set background=dark
+" set t_Co=256
 
 " colorscheme jellybeans
 " colorscheme hybrid
 
 " molokai
-" colorscheme molokai
-" let g:molokai_original=1
-" let g:rehash256=1
-" set background=dark
-" highlight Normal ctermbg=none
+colorscheme molokai
+let g:molokai_original=1
+let g:rehash256=1
+set background=dark
+highlight Normal ctermbg=none

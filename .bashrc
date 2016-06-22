@@ -29,12 +29,12 @@ function color_my_prompt {
 }
 color_my_prompt
 
-alias cc="cd /home/nagai_takahiro/hands/app/controllers";
-alias cj="cd /home/nagai_takahiro/hands/app/assets/javascripts";
-alias cv="cd /home/nagai_takahiro/hands/app/views"
-alias cm="cd /home/nagai_takahiro/hands/app/models"
-alias ch="cd ~/hands";
-alias cs="cd ~/Snufkin";
+alias cc="cd app/controllers";
+alias cj="cd app/assets/javascripts";
+alias cv="cd app/views"
+alias cm="cd app/models"
+alias ch="cd ~/projects/hands";
+alias cs="cd ~/projects/Snufkin";
 alias vrc="vim ~/.vimrc";
 alias brc="vim ~/.bashrc";
 alias tmc="vim ~/.tmux.conf";
@@ -45,7 +45,7 @@ alias sb="source ~/.bashrc";
 alias tmux="tmux -2";
 alias g="git"
 
-alias cx="cd /home/nagai_takahiro/xeus"
+alias cx="cd /home/nagai_takahiro/projects/xeus"
 alias be="bundle exec"
 
 alias c.="cd .."
@@ -88,3 +88,7 @@ _replace_by_history() {
 bind -x '"\C-r": _replace_by_history'
 bind    '"\C-xr": reverse-search-history'
 export PATH=`pwd`/peco_linux_amd64:$PATH
+
+function agvim () {
+  vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
