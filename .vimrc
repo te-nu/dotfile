@@ -1,41 +1,49 @@
-" プラグインが実際にインストールされるディレクトリ
-let s:dein_dir = expand('~/.cache/dein')
-" dein.vim 本体
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-
-" dein.vim がなければ github から落としてくる
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+" vim-plug初期化
+if has('vim_starting')
+  set rtp+=~/.vim/plugged/vim-plug
+  if !isdirectory(expand('~/.vim/plugged/vim-plug'))
+    echo 'install vim-plug...'
+    call system('mkdir -p ~/.vim/plugged/vim-plug')
+    call system('git clone https://github.com/junegunn/vim-plug.git ~/.vim/plugged/vim-plug/autoload')
+  end
 endif
 
-" 設定開始
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
+call plug#begin('~/.vim/plugged')
+  Plug 'junegunn/vim-plug', {'dir': '~/.vim/plugged/vim-plug/autoload'}
+  Plug 'rking/ag.vim'
+  Plug 'yegappan/mru'
+  Plug 'LeafCage/yankround.vim'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-rails'
+  Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+  Plug 'slim-template/vim-slim', { 'for': 'slim' }
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'koron/codic-vim'
+  Plug 'rhysd/accelerated-jk'
+  Plug 'itchyny/lightline.vim'
+  Plug 'scrooloose/syntastic'
 
-  " プラグインリストを収めた TOML ファイル
-  " 予め TOML ファイル（後述）を用意しておく
-  let g:rc_dir    = expand('~/.vim/rc')
-  let s:toml      = g:rc_dir . '/dein.toml'
-  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+  " color schemes
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'croaker/mustang-vim'
+  Plug 'jeffreyiacono/vim-colors-wombat'
+  Plug 'nanotech/jellybeans.vim'
+  Plug 'vim-scripts/Lucius'
+  Plug 'vim-scripts/Zenburn'
+  Plug 'mrkn/mrkn256.vim'
+  Plug 'jpo/vim-railscasts-theme'
+  Plug 'therubymug/vim-pyte'
+  Plug 'tomasr/molokai'
+  Plug 'sickill/vim-monokai'
+  Plug 'morhetz/gruvbox'
+  Plug 'jonathanfilip/vim-lucius'
+  Plug 'cocopon/iceberg.vim'
+  Plug 'w0ng/vim-hybrid'
+  Plug 'gosukiwi/vim-atom-dark'
+call plug#end()
 
-  " TOML を読み込み、キャッシュしておく
-  call dein#load_toml(s:toml,      {'lazy': 0})
-  call dein#load_toml(s:lazy_toml, {'lazy': 1})
 
-  " 設定終了
-  call dein#end()
-  call dein#save_state()
-endif
-
-" もし、未インストールものものがあったらインストール
-if dein#check_install()
-  call dein#install()
-endif
-
-" バックスペースが動作しないものを解消
+" バックスペースを動作するようにする
 set backspace=indent,eol,start
 
 " 行番号の表示
@@ -57,9 +65,6 @@ set showmatch
 " コマンドの補完機能
 set wildmenu
 
-" マウスの有効化
-set mouse=a
-
 " 検索文字を打ち込むと即検索
 set incsearch
 
@@ -74,29 +79,29 @@ nmap <Left> gT
 nmap <Right> gt
 
 " タブをかっこよく --------------------------------------------------------------------
-function! s:SID_PREFIX()
- return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
-endfunction
-function! s:my_tabline()
- let s = ''
- for i in range(1, tabpagenr('$'))
-   let bufnrs = tabpagebuflist(i)
-   let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
-   let no = i  " display 0-origin tabpagenr.
-   let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
-   let title = fnamemodify(bufname(bufnr), ':t')
-   let title = '[' . title . ']'
-   let s .= '%'.i.'T'
-   let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
-   let s .= no . ':' . title
-   let s .= mod
-   let s .= '%#TabLineFill# '
- endfor
- let s .= '%#TabLineFill#%T%=%#TabLine#'
- return s
-endfunction
-let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
-set showtabline=2 " 常にタブラインを表示
+" function! s:SID_PREFIX()
+ " return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+" endfunction
+" function! s:my_tabline()
+ " let s = ''
+ " for i in range(1, tabpagenr('$'))
+   " let bufnrs = tabpagebuflist(i)
+   " let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+   " let no = i  " display 0-origin tabpagenr.
+   " let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+   " let title = fnamemodify(bufname(bufnr), ':t')
+   " let title = '[' . title . ']'
+   " let s .= '%'.i.'T'
+   " let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+   " let s .= no . ':' . title
+   " let s .= mod
+   " let s .= '%#TabLineFill# '
+ " endfor
+ " let s .= '%#TabLineFill#%T%=%#TabLine#'
+ " return s
+" endfunction
+" let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+" set showtabline=2 " 常にタブラインを表示
 
 " vimrc自動更新
 augroup source-vimrc
@@ -115,39 +120,75 @@ augroup HighlightTrailingSpaces
   autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
 
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
+" -------------------------------------------
+" for plugins
+" -------------------------------------------
 
-" coffee script -----------------------------------------------------------------------
+" for yegappan/mru
+nmap <Space><Space> :MRU<CR>
+
+" for LeafCage/yankround.vim
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+let g:yankround_max_history = 100
+nnoremap <Leader><C-p> :<C-u>Unite yankround<CR>
+
+" for rhysd/accelerated-jk
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
+
+" for scrooloose/nerdcommenter
+filetype plugin indent on
+let NERDSpaceDelims = 1
+nmap ,, <Plug>NERDCommenterToggle
+vmap ,, <Plug>NERDCommenterToggle
+
+" for itchyny/lightline.vim
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'wombat'
+      \ }
+
+" for kchmck/vim-coffee-script
 " vimにcoffeeファイルタイプを認識させる
 au BufRead,BufNewFile,BufReadPre *.coffee set filetype=coffee
 " インデント設定
 autocmd FileType coffee setlocal sw=2 sts=2 ts=2 et
-" オートコンパイル
-" 保存と同時にコンパイルする
-" autocmd BufWritePost *.coffee silent make!
-" エラーがあったら別ウィンドウで表示
-autocmd QuickFixCmdPost * nested cwindow | redraw!
 " Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
 nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
-" カラースキーマを有効化
+" for syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" -------------------------------------------
+" for colorchemes
+" -------------------------------------------
 syntax enable
+colorscheme gruvbox
+
+" for tmux (いらないかも)
 set t_ut=
+set t_Co=256
 
 " gruvbox
-colorscheme gruvbox
-set background=dark
-" set t_Co=256
-
-" colorscheme jellybeans
-"colorscheme hybrid
+if g:colors_name == 'gruvbox'
+  set background=dark
+  let g:gruvbox_contrast_dark = 'medium'
+  let g:gruvbox_contrast_light = 'medium'
+endif
 
 " molokai
-"colorscheme molokai
-"let g:molokai_original=1
-"let g:rehash256=1
-"set background=dark
-"highlight Normal ctermbg=none
+if g:colors_name == 'molokai'
+  let g:molokai_original=1
+  let g:rehash256=1
+  highlight Normal ctermbg=none
+endif
