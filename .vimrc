@@ -22,6 +22,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/accelerated-jk'
   Plug 'itchyny/lightline.vim'
   Plug 'scrooloose/syntastic'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'junegunn/vim-easy-align'
+  Plug 'thinca/vim-quickrun'
+  Plug 'elzr/vim-json'
+  Plug 'leafgarland/typescript-vim'
 
   " color schemes
   Plug 'altercation/vim-colors-solarized'
@@ -40,6 +45,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'cocopon/iceberg.vim'
   Plug 'w0ng/vim-hybrid'
   Plug 'gosukiwi/vim-atom-dark'
+  Plug 'KeitaNakamura/neodark.vim'
 call plug#end()
 
 
@@ -165,9 +171,21 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+
+" for ctrlp
+let g:ctrlp_map = '<c-k>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" for vim-easy-align
+" ヴィジュアルモードで選択し，easy-align 呼んで整形．(e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+"
+" easy-alignを呼んだ上で，移動したりテキストオブジェクトを指定して整形．(e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 
 " -------------------------------------------
 " for colorchemes
@@ -175,14 +193,14 @@ let g:syntastic_check_on_wq = 0
 syntax enable
 colorscheme gruvbox
 
-" for tmux (いらないかも)
+" for tmux
 set t_ut=
 set t_Co=256
 
 " gruvbox
 if g:colors_name == 'gruvbox'
   set background=dark
-  let g:gruvbox_contrast_dark = 'medium'
+  let g:gruvbox_contrast_dark  = 'medium'
   let g:gruvbox_contrast_light = 'medium'
 endif
 
@@ -192,3 +210,5 @@ if g:colors_name == 'molokai'
   let g:rehash256=1
   highlight Normal ctermbg=none
 endif
+
+let g:vim_json_syntax_conceal = 0
