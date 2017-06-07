@@ -1,10 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/nagai_takahiro/projects/hands/config/locales'
-let g:netrw_dirhist_2='/home/nagai_takahiro/projects/hands_ansible/roles/nginx/change_conf/tasks'
-let g:netrw_dirhist_3='/home/nagai_takahiro/projects/hands_ansible/group_vars'
-let g:netrw_dirhist_4='/home/nagai_takahiro/projects/hands/app/assets/javascripts/dashboard/progress'
-let g:netrw_dirhist_5='/home/nagai_takahiro/projects/hands/app/views/dashboard/progress'
-let g:netrw_dirhist_6='/home/nagai_takahiro/projects/hands/db/migrate'
-let g:netrw_dirhist_7='/home/nagai_takahiro/projects/hands/lib/autoload/authentication/model'
-let g:netrw_dirhist_8='/home/nagai_takahiro/projects/hands/app/assets/javascripts/dashboard/progress'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/home/nagai_takahiro/projects/hands/app'
+let g:netrw_dirhist_2='/home/nagai_takahiro/projects/hands/config/settings'

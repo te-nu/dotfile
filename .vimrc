@@ -27,6 +27,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'thinca/vim-quickrun'
   Plug 'elzr/vim-json'
   Plug 'leafgarland/typescript-vim'
+  Plug 'Glench/Vim-Jinja2-Syntax'
 
   " color schemes
   Plug 'altercation/vim-colors-solarized'
