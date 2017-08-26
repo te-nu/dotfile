@@ -1,3 +1,2 @@
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/dotfiles/.vim ~/.vim
-ln -sf ~/dotfiles/.bashrc ~/.bashrc
+ln -sfn ~/dotfiles/.vimrc ~/.vimrc
+ln -sfn ~/dotfiles/.bashrc ~/.bashrc
