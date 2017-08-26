@@ -1,0 +1,6 @@
+[core]
+	editor = vim -c \"set fenc=utf-8\"
+[alias]
+  cm = commit
+  st = status
+  ch = checkout
